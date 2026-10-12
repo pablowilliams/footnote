@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "footnote"
+version = "1.0.0"
+description = "An auditable research assistant for SEC annual reports: hybrid retrieval, SQL analytics, verified figures and explicit refusals."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Pablo Williams" }]
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.1",
+    "pgvector>=0.2.5",
+    "httpx>=0.27",
+    "tenacity>=8.2",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "numpy>=1.26",
+    "rank-bm25>=0.2.2",
+    "sentence-transformers>=3.0",
+    "sqlglot>=25.0",
+    "langgraph>=0.2",
+    "structlog>=24.1",
+    "prometheus-client>=0.20",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+llm = ["anthropic>=0.60"]
+dev = ["pytest>=8", "pytest-cov>=5", "hypothesis>=6.100", "ruff>=0.5", "mypy>=1.10", "pre-commit>=3.7", "types-PyYAML"]
+
+[project.scripts]
+footnote = "footnote.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+footnote = ["web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["footnote"]
+omit = ["src/footnote/cli.py", "src/footnote/ingest/pipeline.py", "src/footnote/sec.py"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003", "E501", "B008"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = false
+check_untyped_defs = true
+files = ["src/footnote"]

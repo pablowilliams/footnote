@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="footnote-mode" content="live">
+  <title>Footnote</title>
+  <meta name="description" content="Questions about fifteen companies' SEC annual reports, answered with citations, recomputed figures and explicit refusals.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand"><span class="mark">¹</span> Footnote</div>
+      <nav>
+        <a href="docs/" data-static-only>Case study</a>
+        <a href="docs/evaluation.html" data-static-only>Evaluation</a>
+        <a href="/docs" data-live-only>API</a>
+        <a href="https://github.com/pablowilliams/footnote">Source</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <h1>Ask the annual reports.</h1>
+      <p>Footnote answers questions about the 10-K filings of fifteen US companies. Every figure is read from the
+        filing, every calculation is done in code and checked again, and every answer cites the page it came from.
+        When the filings do not support an answer, it says so.</p>
+      <p class="notice" id="static-notice" hidden>This hosted page replays answers the system produced for the questions below.
+        To ask your own questions, run it locally with <code>make demo</code>; the steps are in the repository.</p>
+    </section>
+
+    <form id="ask" autocomplete="off">
+      <label for="q" class="sr">Question</label>
+      <input id="q" name="q" maxlength="500" placeholder="How did Apple's revenue and operating margin change between 2023 and 2025?">
+      <button type="submit">Ask</button>
+    </form>
+
+    <div class="examples" id="examples" aria-label="Example questions"></div>
+
+    <section id="result" hidden>
+      <div class="meta">
+        <span class="status" id="status"></span>
+        <span class="route" id="route"></span>
+        <span class="latency" id="latency"></span>
+      </div>
+      <div class="answer" id="answer"></div>
+      <div class="options" id="options"></div>
+      <button class="ghost" id="evidence-btn" hidden>Show the evidence for this answer</button>
+
+      <div class="panels">
+        <details id="sources-panel" open>
+          <summary>Sources</summary>
+          <ol id="sources"></ol>
+        </details>
+        <details id="calc-panel">
+          <summary>Calculations</summary>
+          <div id="calcs"></div>
+        </details>
+        <details id="checks-panel">
+          <summary>Verification</summary>
+          <ul id="checks"></ul>
+        </details>
+        <details id="table-panel">
+          <summary>Data</summary>
+          <div class="table-wrap"><table id="table"></table></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="scope">
+      <h2>What it covers</h2>
+      <p><strong>Companies:</strong> Apple, Microsoft, Alphabet, Amazon, Meta, Nvidia, Intel, Cisco, Adobe, Coca-Cola, PepsiCo,
+        Procter &amp; Gamble, Nike, Costco and Caterpillar.</p>
+      <p><strong>Figures, fiscal 2021 onward:</strong> revenue, operating income, operating margin, net income, diluted EPS,
+        operating cash flow, capital expenditure, free cash flow, long-term debt and employees.</p>
+      <p><strong>Text:</strong> Items 1, 1A, 7 and 7A of each company's three most recent annual reports.</p>
+      <p><strong>Not covered:</strong> forecasts, investment advice, currency conversion, and any company outside the list.</p>
+    </section>
+  </main>
+
+  <footer class="wrap foot">Data from SEC EDGAR. Not investment advice.</footer>
+  <script src="static/app.js"></script>
+</body>
+</html>

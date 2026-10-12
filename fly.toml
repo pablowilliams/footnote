@@ -1,0 +1,29 @@
+# Fly.io deployment of the API. Needs a Postgres database with pgvector; set
+# FOOTNOTE_DATABASE_URL as a secret:  fly secrets set FOOTNOTE_DATABASE_URL=...
+app = "footnote-filings"
+primary_region = "lhr"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  FOOTNOTE_RATE_LIMIT = "20"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"
+
+[checks.health]
+  type = "http"
+  port = 8000
+  path = "/health"
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "90s"

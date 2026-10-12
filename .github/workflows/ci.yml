@@ -1,0 +1,59 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff mypy types-PyYAML pydantic sqlalchemy fastapi
+      - run: ruff check src tests
+      - run: ruff format --check src tests
+      - run: mypy --ignore-missing-imports src/footnote
+
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: footnote
+          POSTGRES_PASSWORD: footnote
+          POSTGRES_DB: footnote
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U footnote" --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      FOOTNOTE_DATABASE_URL: postgresql+psycopg://footnote:footnote@localhost:5432/footnote
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install (CPU-only PyTorch)
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -e ".[dev]"
+      - name: Load the committed snapshot
+        run: |
+          python -m footnote.cli migrate
+          python -m footnote.cli load
+      - name: Tests
+        run: python -m pytest --cov --cov-report=term-missing:skip-covered
+      - name: Evaluation (fails below 90% correctness)
+        run: python -m footnote.cli evaluate --min-correct 0.90
+      - uses: actions/upload-artifact@v4
+        with:
+          name: evaluation
+          path: |
+            reports/evaluation.json
+            docs/evaluation.md

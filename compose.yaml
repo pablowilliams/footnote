@@ -1,0 +1,32 @@
+# docker compose up --build   ->  http://localhost:8000
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: footnote
+      POSTGRES_PASSWORD: footnote
+      POSTGRES_DB: footnote
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U footnote"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      FOOTNOTE_DATABASE_URL: postgresql+psycopg://footnote:footnote@db:5432/footnote
+      FOOTNOTE_RATE_LIMIT: "30"
+      # Set FOOTNOTE_NARRATOR=claude and ANTHROPIC_API_KEY to enable the optional Claude narrator.
+      FOOTNOTE_NARRATOR: ${FOOTNOTE_NARRATOR:-template}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

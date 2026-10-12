@@ -1,0 +1,1983 @@
+{
+ "answers": {
+  "how did apple s revenue and operating margin change between 2023 and 2025": {
+   "answer_id": "94129665-fccc-4b5c-972a-0f9b090a6729",
+   "question": "How did Apple's revenue and operating margin change between 2023 and 2025?",
+   "status": "verified",
+   "route": "sql_calculation",
+   "answer": "Apple's revenue rose from $383.3 billion in fiscal 2023 [1] to $416.2 billion in fiscal 2025 [2], an increase of 8.6%, or 4.2% a year compounded. Its operating margin rose from 29.8% in fiscal 2023 [1] to 32.0% in fiscal 2025 [2], up 2.1 percentage points.",
+   "segments": [
+    {
+     "text": "Apple's revenue rose from $383.3 billion in fiscal 2023 [1] to $416.2 billion in fiscal 2025 [2], an increase of 8.6%, or 4.2% a year compounded.",
+     "citation_ids": [
+      1,
+      2
+     ],
+     "kind": "computed",
+     "bullet": false,
+     "calc_index": 0
+    },
+    {
+     "text": "Its operating margin rose from 29.8% in fiscal 2023 [1] to 32.0% in fiscal 2025 [2], up 2.1 percentage points.",
+     "citation_ids": [
+      1,
+      1,
+      2,
+      2
+     ],
+     "kind": "computed",
+     "bullet": false,
+     "calc_index": 4
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "financial_statement",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2023,
+     "form": "10-K",
+     "filed": "2023-11-03",
+     "accession": "0000320193-23-000106",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+     "location": "Consolidated statement of operations",
+     "page": "28",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss, us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    },
+    {
+     "id": 2,
+     "kind": "financial_statement",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Consolidated statement of operations",
+     "page": "29",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss, us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    }
+   ],
+   "calculations": [
+    {
+     "description": "Change in Apple's revenue, fiscal 2023 to 2025",
+     "formula": "(end - start) / abs(start)",
+     "inputs": [
+      {
+       "label": "revenue, fiscal 2023",
+       "value": 383285000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "revenue, fiscal 2025",
+       "value": 416161000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.0857742932804571,
+     "unit": "ratio"
+    },
+    {
+     "description": "Compound annual growth in Apple's revenue, fiscal 2023 to 2025",
+     "formula": "(end / start) ** (1 / 2) - 1",
+     "inputs": [
+      {
+       "label": "revenue, fiscal 2023",
+       "value": 383285000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "revenue, fiscal 2025",
+       "value": 416161000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.04200493918237114,
+     "unit": "ratio"
+    },
+    {
+     "description": "Apple's operating margin, fiscal 2023",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": 114301000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "Revenue",
+       "value": 383285000000.0,
+       "citation_id": 1
+      }
+     ],
+     "result": 0.2982141226502472,
+     "unit": "ratio"
+    },
+    {
+     "description": "Apple's operating margin, fiscal 2025",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": 133050000000.0,
+       "citation_id": 2
+      },
+      {
+       "label": "Revenue",
+       "value": 416161000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.31970799762591884,
+     "unit": "ratio"
+    },
+    {
+     "description": "Change in Apple's operating margin, fiscal 2023 to 2025",
+     "formula": "end - start",
+     "inputs": [
+      {
+       "label": "operating margin, fiscal 2023",
+       "value": 0.298214122650247,
+       "citation_id": 1
+      },
+      {
+       "label": "operating margin, fiscal 2025",
+       "value": 0.319707997625919,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.02149387497567201,
+     "unit": "percentage_points"
+    }
+   ],
+   "checks": [
+    {
+     "name": "citations_resolve",
+     "passed": true,
+     "detail": "every figure and quotation is cited"
+    },
+    {
+     "name": "numbers_sourced",
+     "passed": true,
+     "detail": "7 figures traced to source or calculation"
+    },
+    {
+     "name": "calculations_recomputed",
+     "passed": true,
+     "detail": "5 calculations reproduced from their inputs"
+    },
+    {
+     "name": "units_consistent",
+     "passed": true,
+     "detail": "units: USD, ratio"
+    },
+    {
+     "name": "periods_match",
+     "passed": true,
+     "detail": "fiscal 2023, 2024, 2025"
+    },
+    {
+     "name": "direction_consistent",
+     "passed": true,
+     "detail": "described direction matches the calculation"
+    },
+    {
+     "name": "complete",
+     "passed": true,
+     "detail": "all requested figures found"
+    }
+   ],
+   "table": [
+    {
+     "company": "Apple",
+     "metric": "Operating margin",
+     "fiscal_year": 2023,
+     "value": 0.298214122650247,
+     "display": "29.8%",
+     "source": "derived"
+    },
+    {
+     "company": "Apple",
+     "metric": "Operating margin",
+     "fiscal_year": 2024,
+     "value": 0.315102228700756,
+     "display": "31.5%",
+     "source": "derived"
+    },
+    {
+     "company": "Apple",
+     "metric": "Operating margin",
+     "fiscal_year": 2025,
+     "value": 0.319707997625919,
+     "display": "32.0%",
+     "source": "derived"
+    },
+    {
+     "company": "Apple",
+     "metric": "Revenue",
+     "fiscal_year": 2023,
+     "value": 383285000000.0,
+     "display": "$383.3 billion",
+     "source": "xbrl"
+    },
+    {
+     "company": "Apple",
+     "metric": "Revenue",
+     "fiscal_year": 2024,
+     "value": 391035000000.0,
+     "display": "$391.0 billion",
+     "source": "xbrl"
+    },
+    {
+     "company": "Apple",
+     "metric": "Revenue",
+     "fiscal_year": 2025,
+     "value": 416161000000.0,
+     "display": "$416.2 billion",
+     "source": "xbrl"
+    }
+   ],
+   "clarification_options": [],
+   "reason": null,
+   "narrator": "template",
+   "latency_ms": 71,
+   "sql": "SELECT c.ticker, c.name AS company, mv.metric_key, mv.fiscal_year, mv.period_end, mv.value, mv.unit,\n       mv.source_kind, mv.xbrl_tag, mv.extraction_confidence, mv.found_in_document, mv.derivation, mv.evidence,\n       f.accession, f.form, f.filed, f.url,\n       df.accession AS doc_accession, df.form AS doc_form, df.filed AS doc_filed, df.url AS doc_url\nFROM metric_value mv\nJOIN company c ON c.company_id = mv.company_id\nLEFT JOIN filing f ON f.filing_id = mv.filing_id\nLEFT JOIN filing df ON df.accession = mv.evidence ->> 'doc_accession'\nWHERE c.ticker = ANY(:tickers)\n  AND mv.metric_key = ANY(:metrics)\n  AND mv.fiscal_year BETWEEN :year_from AND :year_to\nORDER BY c.ticker, mv.metric_key, mv.fiscal_year\nLIMIT 500"
+  },
+  "evidence:how did apple s revenue and operating margin change between 2023 and 2025": {
+   "answer_id": "769b198e-f0fd-4f19-8282-533c170d4a8e",
+   "question": "Show the evidence for that answer",
+   "status": "verified",
+   "route": "evidence",
+   "answer": "Evidence for the answer to: \u201cHow did Apple's revenue and operating margin change between 2023 and 2025?\u201d\n[1] Apple Inc., Form 10-K for fiscal 2023 (filed 2023-11-03), Consolidated statement of operations, page 28\n[2] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Consolidated statement of operations, page 29\nCalculation: Change in Apple's revenue, fiscal 2023 to 2025 = (end - start) / abs(start), from revenue, fiscal 2023 [1], revenue, fiscal 2025 [2].\nCalculation: Compound annual growth in Apple's revenue, fiscal 2023 to 2025 = (end / start) ** (1 / 2) - 1, from revenue, fiscal 2023 [1], revenue, fiscal 2025 [2].\nCalculation: Apple's operating margin, fiscal 2023 = operating_income / revenue, from Operating income [1], Revenue [1].\nCalculation: Apple's operating margin, fiscal 2025 = operating_income / revenue, from Operating income [2], Revenue [2].\nCalculation: Change in Apple's operating margin, fiscal 2023 to 2025 = end - start, from operating margin, fiscal 2023 [1], operating margin, fiscal 2025 [2].",
+   "segments": [
+    {
+     "text": "[1] Apple Inc., Form 10-K for fiscal 2023 (filed 2023-11-03), Consolidated statement of operations, page 28",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[2] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Consolidated statement of operations, page 29",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Change in Apple's revenue, fiscal 2023 to 2025 = (end - start) / abs(start), from revenue, fiscal 2023 [1], revenue, fiscal 2025 [2].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Compound annual growth in Apple's revenue, fiscal 2023 to 2025 = (end / start) ** (1 / 2) - 1, from revenue, fiscal 2023 [1], revenue, fiscal 2025 [2].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Apple's operating margin, fiscal 2023 = operating_income / revenue, from Operating income [1], Revenue [1].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Apple's operating margin, fiscal 2025 = operating_income / revenue, from Operating income [2], Revenue [2].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Change in Apple's operating margin, fiscal 2023 to 2025 = end - start, from operating margin, fiscal 2023 [1], operating margin, fiscal 2025 [2].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "financial_statement",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2023,
+     "form": "10-K",
+     "filed": "2023-11-03",
+     "accession": "0000320193-23-000106",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+     "location": "Consolidated statement of operations",
+     "page": "28",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss, us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    },
+    {
+     "id": 2,
+     "kind": "financial_statement",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Consolidated statement of operations",
+     "page": "29",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss, us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    }
+   ],
+   "calculations": [
+    {
+     "description": "Change in Apple's revenue, fiscal 2023 to 2025",
+     "formula": "(end - start) / abs(start)",
+     "inputs": [
+      {
+       "label": "revenue, fiscal 2023",
+       "value": 383285000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "revenue, fiscal 2025",
+       "value": 416161000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.0857742932804571,
+     "unit": "ratio"
+    },
+    {
+     "description": "Compound annual growth in Apple's revenue, fiscal 2023 to 2025",
+     "formula": "(end / start) ** (1 / 2) - 1",
+     "inputs": [
+      {
+       "label": "revenue, fiscal 2023",
+       "value": 383285000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "revenue, fiscal 2025",
+       "value": 416161000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.04200493918237114,
+     "unit": "ratio"
+    },
+    {
+     "description": "Apple's operating margin, fiscal 2023",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": 114301000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "Revenue",
+       "value": 383285000000.0,
+       "citation_id": 1
+      }
+     ],
+     "result": 0.2982141226502472,
+     "unit": "ratio"
+    },
+    {
+     "description": "Apple's operating margin, fiscal 2025",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": 133050000000.0,
+       "citation_id": 2
+      },
+      {
+       "label": "Revenue",
+       "value": 416161000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.31970799762591884,
+     "unit": "ratio"
+    },
+    {
+     "description": "Change in Apple's operating margin, fiscal 2023 to 2025",
+     "formula": "end - start",
+     "inputs": [
+      {
+       "label": "operating margin, fiscal 2023",
+       "value": 0.298214122650247,
+       "citation_id": 1
+      },
+      {
+       "label": "operating margin, fiscal 2025",
+       "value": 0.319707997625919,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.02149387497567201,
+     "unit": "percentage_points"
+    }
+   ],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Evidence for the answer to: \u201cHow did Apple's revenue and operating margin change between 2023 and 2025?\u201d",
+   "narrator": "template",
+   "latency_ms": 3,
+   "sql": null
+  },
+  "which risks did nvidia mention in its latest annual report": {
+   "answer_id": "779977e3-5bcc-49d6-9df7-4df39c7690a3",
+   "question": "Which risks did Nvidia mention in its latest annual report?",
+   "status": "verified",
+   "route": "document",
+   "answer": "Nvidia's fiscal 2026 annual report (Item 1A, Risk Factors) describes these risks, among others:\n- \u201cThe global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations.\u201d [1]\n- \u201cInability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation.\u201d [2]\n- \u201cBusiness disruptions could harm our operations and financial results.\u201d [3]\n- \u201cAdverse developments affecting financial institutions, such as bank failures or instability, or concerns or speculation about similar events or risks, could lead to market-wide liquidity problems and other disruptions, which could impact our customers\u2019 ability to fulfill their payment obligations to us, our vendors\u2019 ability to fulfill their contractual obligations to us, or our ability to fulfill our own obligations.\u201d [4]",
+   "segments": [
+    {
+     "text": "Nvidia's fiscal 2026 annual report (Item 1A, Risk Factors) describes these risks, among others:",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "The global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations.",
+     "citation_ids": [
+      1
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "Inability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation.",
+     "citation_ids": [
+      2
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "Business disruptions could harm our operations and financial results.",
+     "citation_ids": [
+      3
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "Adverse developments affecting financial institutions, such as bank failures or instability, or concerns or speculation about similar events or risks, could lead to market-wide liquidity problems and other disruptions, which could impact our customers\u2019 ability to fulfill their payment obligations to us, our vendors\u2019 ability to fulfill their contractual obligations to us, or our ability to fulfill our own obligations.",
+     "citation_ids": [
+      4
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "19",
+     "xbrl_tag": null,
+     "snippet": "The global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations."
+    },
+    {
+     "id": 2,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "20",
+     "xbrl_tag": null,
+     "snippet": "Inability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation."
+    },
+    {
+     "id": 3,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "13",
+     "xbrl_tag": null,
+     "snippet": "Business disruptions could harm our operations and financial results."
+    },
+    {
+     "id": 4,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "18",
+     "xbrl_tag": null,
+     "snippet": "Adverse developments affecting financial institutions, such as bank failures or instability, or concerns or speculation about similar events or risks, could lead to market-wide liquidity problems and other disruptions, which could impact our customers\u2019 ability to fulfill their payment obligations to us, our vendors\u2019 ability to fulfill their contractual obligations to us, or our ability to fulfill our own obligations."
+    }
+   ],
+   "calculations": [],
+   "checks": [
+    {
+     "name": "citations_resolve",
+     "passed": true,
+     "detail": "every figure and quotation is cited"
+    },
+    {
+     "name": "numbers_sourced",
+     "passed": true,
+     "detail": "0 figures traced to source or calculation"
+    },
+    {
+     "name": "quotes_verbatim",
+     "passed": true,
+     "detail": "quotations match the cited passages"
+    },
+    {
+     "name": "evidence_strength",
+     "passed": true,
+     "detail": "best passage similarity 0.69 (threshold 0.38)"
+    }
+   ],
+   "table": [],
+   "clarification_options": [],
+   "reason": null,
+   "narrator": "template",
+   "latency_ms": 11559,
+   "sql": null
+  },
+  "evidence:which risks did nvidia mention in its latest annual report": {
+   "answer_id": "4fb3f552-cbbf-47bf-8a90-c9cdbc7cd915",
+   "question": "Show the evidence for that answer",
+   "status": "verified",
+   "route": "evidence",
+   "answer": "Evidence for the answer to: \u201cWhich risks did Nvidia mention in its latest annual report?\u201d\n[1] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 19: \u201cThe global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations.\u201d\n[2] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 20: \u201cInability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation.\u201d\n[3] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 13: \u201cBusiness disruptions could harm our operations and financial results.\u201d\n[4] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 18: \u201cAdverse developments affecting financial institutions, such as bank failures or instability, or concerns or speculation about similar events or risks, could lead to market-wide liquidity problems and other disruptions, which could impact our customers\u2019 ability to fulfill their payment obligations to us, our vendors\u2019 ability to fulfill their contractual obligations to us, or our ability to fulfill our own obligations.\u201d",
+   "segments": [
+    {
+     "text": "[1] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 19: \u201cThe global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[2] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 20: \u201cInability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[3] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 13: \u201cBusiness disruptions could harm our operations and financial results.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[4] NVIDIA Corporation, Form 10-K for fiscal 2026 (filed 2026-02-25), Item 1A, Risk Factors, page 18: \u201cAdverse developments affecting financial institutions, such as bank failures or instability, or concerns or speculation about similar events or risks, could lead to market-wide liquidity problems and other disruptions, which could impact our customers\u2019 ability to fulfill their payment obligations to us, our vendors\u2019 ability to fulfill their contractual obligations to us, or our ability to fulfill our own obligations.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "19",
+     "xbrl_tag": null,
+     "snippet": "The global nature of our business subjects us to a number of risks and uncertainties, which have had in the past and could in the future have a material adverse effect on our business, financial condition and results of operations."
+    },
+    {
+     "id": 2,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "20",
+     "xbrl_tag": null,
+     "snippet": "Inability to fulfill orders, delayed sales, lower margins or lost customers as a result of these disruptions could adversely affect our financial results, stock price and reputation."
+    },
+    {
+     "id": 3,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "13",
+     "xbrl_tag": null,
+     "snippet": "Business disruptions could harm our operations and financial results."
+    },
+    {
+     "id": 4,
+     "kind": "document",
+     "company": "NVIDIA Corporation",
+     "ticker": "NVDA",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-02-25",
+     "accession": "0001045810-26-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "18",
+     "xbrl_tag": null,
+     "snippet": "Adverse developments affecting financial institutions, such as bank failures or instability, or concerns or speculation about similar events or risks, could lead to market-wide liquidity problems and other disruptions, which could impact our customers\u2019 ability to fulfill their payment obligations to us, our vendors\u2019 ability to fulfill their contractual obligations to us, or our ability to fulfill our own obligations."
+    }
+   ],
+   "calculations": [],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Evidence for the answer to: \u201cWhich risks did Nvidia mention in its latest annual report?\u201d",
+   "narrator": "template",
+   "latency_ms": 5,
+   "sql": null
+  },
+  "compare free cash flow across apple microsoft and alphabet in 2024": {
+   "answer_id": "30d5e068-0f7e-4d3e-a1fa-e105da5f2775",
+   "question": "Compare free cash flow across Apple, Microsoft and Alphabet in 2024.",
+   "status": "verified",
+   "route": "comparison",
+   "answer": "In fiscal 2024, free cash flow was highest at Apple ($108.8 billion) [1], followed by Microsoft ($74.1 billion) [2] and Alphabet ($72.8 billion) [3]. Fiscal years end in different months, so the periods are not identical: Apple in September; Alphabet in December; Microsoft in June.",
+   "segments": [
+    {
+     "text": "In fiscal 2024, free cash flow was highest at Apple ($108.8 billion) [1], followed by Microsoft ($74.1 billion) [2] and Alphabet ($72.8 billion) [3].",
+     "citation_ids": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3
+     ],
+     "kind": "computed",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Fiscal years end in different months, so the periods are not identical: Apple in September; Alphabet in December; Microsoft in June.",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "financial_statement",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2024-11-01",
+     "accession": "0000320193-24-000123",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+     "location": "Consolidated statement of cash flows",
+     "page": "33",
+     "xbrl_tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities, us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "snippet": null
+    },
+    {
+     "id": 2,
+     "kind": "financial_statement",
+     "company": "Microsoft Corporation",
+     "ticker": "MSFT",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2024-07-30",
+     "accession": "0000950170-24-087843",
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+     "location": "Consolidated statement of cash flows",
+     "page": "59",
+     "xbrl_tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities, us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "snippet": null
+    },
+    {
+     "id": 3,
+     "kind": "financial_statement",
+     "company": "Alphabet Inc.",
+     "ticker": "GOOGL",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-02-05",
+     "accession": "0001652044-25-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+     "location": "Consolidated statement of cash flows",
+     "page": "57",
+     "xbrl_tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities, us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "snippet": null
+    }
+   ],
+   "calculations": [
+    {
+     "description": "Apple's free cash flow, fiscal 2024",
+     "formula": "operating_cash_flow - capital_expenditure",
+     "inputs": [
+      {
+       "label": "Operating cash flow",
+       "value": 118254000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "Capital expenditure",
+       "value": 9447000000.0,
+       "citation_id": 1
+      }
+     ],
+     "result": 108807000000.0,
+     "unit": "USD"
+    },
+    {
+     "description": "Microsoft's free cash flow, fiscal 2024",
+     "formula": "operating_cash_flow - capital_expenditure",
+     "inputs": [
+      {
+       "label": "Operating cash flow",
+       "value": 118548000000.0,
+       "citation_id": 2
+      },
+      {
+       "label": "Capital expenditure",
+       "value": 44477000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 74071000000.0,
+     "unit": "USD"
+    },
+    {
+     "description": "Alphabet's free cash flow, fiscal 2024",
+     "formula": "operating_cash_flow - capital_expenditure",
+     "inputs": [
+      {
+       "label": "Operating cash flow",
+       "value": 125299000000.0,
+       "citation_id": 3
+      },
+      {
+       "label": "Capital expenditure",
+       "value": 52535000000.0,
+       "citation_id": 3
+      }
+     ],
+     "result": 72764000000.0,
+     "unit": "USD"
+    }
+   ],
+   "checks": [
+    {
+     "name": "citations_resolve",
+     "passed": true,
+     "detail": "every figure and quotation is cited"
+    },
+    {
+     "name": "numbers_sourced",
+     "passed": true,
+     "detail": "3 figures traced to source or calculation"
+    },
+    {
+     "name": "calculations_recomputed",
+     "passed": true,
+     "detail": "3 calculations reproduced from their inputs"
+    },
+    {
+     "name": "units_consistent",
+     "passed": true,
+     "detail": "units: USD"
+    },
+    {
+     "name": "periods_match",
+     "passed": true,
+     "detail": "fiscal 2024"
+    },
+    {
+     "name": "complete",
+     "passed": true,
+     "detail": "all requested figures found"
+    }
+   ],
+   "table": [
+    {
+     "company": "Apple",
+     "metric": "Free cash flow",
+     "fiscal_year": 2024,
+     "value": 108807000000.0,
+     "display": "$108.8 billion",
+     "source": "derived"
+    },
+    {
+     "company": "Alphabet",
+     "metric": "Free cash flow",
+     "fiscal_year": 2024,
+     "value": 72764000000.0,
+     "display": "$72.8 billion",
+     "source": "derived"
+    },
+    {
+     "company": "Microsoft",
+     "metric": "Free cash flow",
+     "fiscal_year": 2024,
+     "value": 74071000000.0,
+     "display": "$74.1 billion",
+     "source": "derived"
+    }
+   ],
+   "clarification_options": [],
+   "reason": null,
+   "narrator": "template",
+   "latency_ms": 11,
+   "sql": "SELECT c.ticker, c.name AS company, mv.metric_key, mv.fiscal_year, mv.period_end, mv.value, mv.unit,\n       mv.source_kind, mv.xbrl_tag, mv.extraction_confidence, mv.found_in_document, mv.derivation, mv.evidence,\n       f.accession, f.form, f.filed, f.url,\n       df.accession AS doc_accession, df.form AS doc_form, df.filed AS doc_filed, df.url AS doc_url\nFROM metric_value mv\nJOIN company c ON c.company_id = mv.company_id\nLEFT JOIN filing f ON f.filing_id = mv.filing_id\nLEFT JOIN filing df ON df.accession = mv.evidence ->> 'doc_accession'\nWHERE c.ticker = ANY(:tickers)\n  AND mv.metric_key = ANY(:metrics)\n  AND mv.fiscal_year BETWEEN :year_from AND :year_to\nORDER BY c.ticker, mv.metric_key, mv.fiscal_year\nLIMIT 500"
+  },
+  "evidence:compare free cash flow across apple microsoft and alphabet in 2024": {
+   "answer_id": "ec3a4b42-13c0-4088-a643-0d21fb25d777",
+   "question": "Show the evidence for that answer",
+   "status": "verified",
+   "route": "evidence",
+   "answer": "Evidence for the answer to: \u201cCompare free cash flow across Apple, Microsoft and Alphabet in 2024.\u201d\n[1] Apple Inc., Form 10-K for fiscal 2024 (filed 2024-11-01), Consolidated statement of cash flows, page 33\n[2] Microsoft Corporation, Form 10-K for fiscal 2024 (filed 2024-07-30), Consolidated statement of cash flows, page 59\n[3] Alphabet Inc., Form 10-K for fiscal 2024 (filed 2025-02-05), Consolidated statement of cash flows, page 57\nCalculation: Apple's free cash flow, fiscal 2024 = operating_cash_flow - capital_expenditure, from Operating cash flow [1], Capital expenditure [1].\nCalculation: Microsoft's free cash flow, fiscal 2024 = operating_cash_flow - capital_expenditure, from Operating cash flow [2], Capital expenditure [2].\nCalculation: Alphabet's free cash flow, fiscal 2024 = operating_cash_flow - capital_expenditure, from Operating cash flow [3], Capital expenditure [3].",
+   "segments": [
+    {
+     "text": "[1] Apple Inc., Form 10-K for fiscal 2024 (filed 2024-11-01), Consolidated statement of cash flows, page 33",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[2] Microsoft Corporation, Form 10-K for fiscal 2024 (filed 2024-07-30), Consolidated statement of cash flows, page 59",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[3] Alphabet Inc., Form 10-K for fiscal 2024 (filed 2025-02-05), Consolidated statement of cash flows, page 57",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Apple's free cash flow, fiscal 2024 = operating_cash_flow - capital_expenditure, from Operating cash flow [1], Capital expenditure [1].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Microsoft's free cash flow, fiscal 2024 = operating_cash_flow - capital_expenditure, from Operating cash flow [2], Capital expenditure [2].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Alphabet's free cash flow, fiscal 2024 = operating_cash_flow - capital_expenditure, from Operating cash flow [3], Capital expenditure [3].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "financial_statement",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2024-11-01",
+     "accession": "0000320193-24-000123",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+     "location": "Consolidated statement of cash flows",
+     "page": "33",
+     "xbrl_tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities, us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "snippet": null
+    },
+    {
+     "id": 2,
+     "kind": "financial_statement",
+     "company": "Microsoft Corporation",
+     "ticker": "MSFT",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2024-07-30",
+     "accession": "0000950170-24-087843",
+     "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017024087843/msft-20240630.htm",
+     "location": "Consolidated statement of cash flows",
+     "page": "59",
+     "xbrl_tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities, us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "snippet": null
+    },
+    {
+     "id": 3,
+     "kind": "financial_statement",
+     "company": "Alphabet Inc.",
+     "ticker": "GOOGL",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-02-05",
+     "accession": "0001652044-25-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/goog-20241231.htm",
+     "location": "Consolidated statement of cash flows",
+     "page": "57",
+     "xbrl_tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities, us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "snippet": null
+    }
+   ],
+   "calculations": [
+    {
+     "description": "Apple's free cash flow, fiscal 2024",
+     "formula": "operating_cash_flow - capital_expenditure",
+     "inputs": [
+      {
+       "label": "Operating cash flow",
+       "value": 118254000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "Capital expenditure",
+       "value": 9447000000.0,
+       "citation_id": 1
+      }
+     ],
+     "result": 108807000000.0,
+     "unit": "USD"
+    },
+    {
+     "description": "Microsoft's free cash flow, fiscal 2024",
+     "formula": "operating_cash_flow - capital_expenditure",
+     "inputs": [
+      {
+       "label": "Operating cash flow",
+       "value": 118548000000.0,
+       "citation_id": 2
+      },
+      {
+       "label": "Capital expenditure",
+       "value": 44477000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 74071000000.0,
+     "unit": "USD"
+    },
+    {
+     "description": "Alphabet's free cash flow, fiscal 2024",
+     "formula": "operating_cash_flow - capital_expenditure",
+     "inputs": [
+      {
+       "label": "Operating cash flow",
+       "value": 125299000000.0,
+       "citation_id": 3
+      },
+      {
+       "label": "Capital expenditure",
+       "value": 52535000000.0,
+       "citation_id": 3
+      }
+     ],
+     "result": 72764000000.0,
+     "unit": "USD"
+    }
+   ],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Evidence for the answer to: \u201cCompare free cash flow across Apple, Microsoft and Alphabet in 2024.\u201d",
+   "narrator": "template",
+   "latency_ms": 3,
+   "sql": null
+  },
+  "why did intel s operating margin decline in 2024": {
+   "answer_id": "f8c14989-a2a5-4de9-8e77-219b2dfd4311",
+   "question": "Why did Intel's operating margin decline in 2024?",
+   "status": "verified",
+   "route": "sql_and_document",
+   "answer": "Intel's operating margin fell from 0.2% in fiscal 2023 [1][2] to -22.0% in fiscal 2024 [3], down 22.2 percentage points. In its fiscal 2024 annual report (Item 7, Management's Discussion and Analysis), Intel attributes the change to the following:\n- \u201cOur consolidated gross margin in 2024 decreased by $4.4 billion, or 20%, compared to 2023 due primarily to higher 2024 impairment charges and accelerated depreciation.\u201d [4]\n- \u201cTo the extent we are unable to grow our revenues to offset these production costs, our gross margin and operating income will be unfavorably affected.\u201d [5]\n- \u201cCCG operating expenses decreased $1.6 billion from 2022.\u201d [6]",
+   "segments": [
+    {
+     "text": "Intel's operating margin fell from 0.2% in fiscal 2023 [1][2] to -22.0% in fiscal 2024 [3], down 22.2 percentage points.",
+     "citation_ids": [
+      1,
+      2,
+      3,
+      3
+     ],
+     "kind": "computed",
+     "bullet": false,
+     "calc_index": 2
+    },
+    {
+     "text": "In its fiscal 2024 annual report (Item 7, Management's Discussion and Analysis), Intel attributes the change to the following:",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Our consolidated gross margin in 2024 decreased by $4.4 billion, or 20%, compared to 2023 due primarily to higher 2024 impairment charges and accelerated depreciation.",
+     "citation_ids": [
+      4
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "To the extent we are unable to grow our revenues to offset these production costs, our gross margin and operating income will be unfavorably affected.",
+     "citation_ids": [
+      5
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "CCG operating expenses decreased $1.6 billion from 2022.",
+     "citation_ids": [
+      6
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "financial_statement",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2023,
+     "form": "10-K",
+     "filed": "2024-01-26",
+     "accession": "0000050863-24-000010",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000010/intc-20231230.htm",
+     "location": "Consolidated statement of operations",
+     "page": "70",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss",
+     "snippet": null
+    },
+    {
+     "id": 2,
+     "kind": "financial_statement",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2023,
+     "form": "10-K",
+     "filed": "2024-01-26",
+     "accession": "0000050863-24-000010",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000010/intc-20231230.htm",
+     "location": "Consolidated statement of operations",
+     "page": "74",
+     "xbrl_tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    },
+    {
+     "id": 3,
+     "kind": "financial_statement",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Consolidated statement of operations",
+     "page": "57",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss, us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    },
+    {
+     "id": 4,
+     "kind": "document",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "23",
+     "xbrl_tag": null,
+     "snippet": "Our consolidated gross margin in 2024 decreased by $4.4 billion, or 20%, compared to 2023 due primarily to higher 2024 impairment charges and accelerated depreciation."
+    },
+    {
+     "id": 5,
+     "kind": "document",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "24",
+     "xbrl_tag": null,
+     "snippet": "To the extent we are unable to grow our revenues to offset these production costs, our gross margin and operating income will be unfavorably affected."
+    },
+    {
+     "id": 6,
+     "kind": "document",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "18",
+     "xbrl_tag": null,
+     "snippet": "CCG operating expenses decreased $1.6 billion from 2022."
+    }
+   ],
+   "calculations": [
+    {
+     "description": "Intel's operating margin, fiscal 2023",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": 93000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "Revenue",
+       "value": 54228000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.001714981190528878,
+     "unit": "ratio"
+    },
+    {
+     "description": "Intel's operating margin, fiscal 2024",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": -11678000000.0,
+       "citation_id": 3
+      },
+      {
+       "label": "Revenue",
+       "value": 53101000000.0,
+       "citation_id": 3
+      }
+     ],
+     "result": -0.2199205288036007,
+     "unit": "ratio"
+    },
+    {
+     "description": "Change in Intel's operating margin, fiscal 2023 to 2024",
+     "formula": "end - start",
+     "inputs": [
+      {
+       "label": "operating margin, fiscal 2023",
+       "value": 0.00171498119052888,
+       "citation_id": 1
+      },
+      {
+       "label": "operating margin, fiscal 2024",
+       "value": -0.219920528803601,
+       "citation_id": 3
+      }
+     ],
+     "result": -0.22163550999412987,
+     "unit": "percentage_points"
+    }
+   ],
+   "checks": [
+    {
+     "name": "citations_resolve",
+     "passed": true,
+     "detail": "every figure and quotation is cited"
+    },
+    {
+     "name": "numbers_sourced",
+     "passed": true,
+     "detail": "3 figures traced to source or calculation"
+    },
+    {
+     "name": "quotes_verbatim",
+     "passed": true,
+     "detail": "quotations match the cited passages"
+    },
+    {
+     "name": "calculations_recomputed",
+     "passed": true,
+     "detail": "3 calculations reproduced from their inputs"
+    },
+    {
+     "name": "units_consistent",
+     "passed": true,
+     "detail": "units: USD, ratio"
+    },
+    {
+     "name": "periods_match",
+     "passed": true,
+     "detail": "fiscal 2023, 2024"
+    },
+    {
+     "name": "direction_consistent",
+     "passed": true,
+     "detail": "described direction matches the calculation"
+    },
+    {
+     "name": "complete",
+     "passed": true,
+     "detail": "all requested figures found"
+    },
+    {
+     "name": "evidence_strength",
+     "passed": true,
+     "detail": "best passage similarity 0.47 (threshold 0.38)"
+    }
+   ],
+   "table": [
+    {
+     "company": "Intel",
+     "metric": "Operating margin",
+     "fiscal_year": 2023,
+     "value": 0.00171498119052888,
+     "display": "0.2%",
+     "source": "derived"
+    },
+    {
+     "company": "Intel",
+     "metric": "Operating margin",
+     "fiscal_year": 2024,
+     "value": -0.219920528803601,
+     "display": "-22.0%",
+     "source": "derived"
+    }
+   ],
+   "clarification_options": [],
+   "reason": null,
+   "narrator": "template",
+   "latency_ms": 174,
+   "sql": "SELECT c.ticker, c.name AS company, mv.metric_key, mv.fiscal_year, mv.period_end, mv.value, mv.unit,\n       mv.source_kind, mv.xbrl_tag, mv.extraction_confidence, mv.found_in_document, mv.derivation, mv.evidence,\n       f.accession, f.form, f.filed, f.url,\n       df.accession AS doc_accession, df.form AS doc_form, df.filed AS doc_filed, df.url AS doc_url\nFROM metric_value mv\nJOIN company c ON c.company_id = mv.company_id\nLEFT JOIN filing f ON f.filing_id = mv.filing_id\nLEFT JOIN filing df ON df.accession = mv.evidence ->> 'doc_accession'\nWHERE c.ticker = ANY(:tickers)\n  AND mv.metric_key = ANY(:metrics)\n  AND mv.fiscal_year BETWEEN :year_from AND :year_to\nORDER BY c.ticker, mv.metric_key, mv.fiscal_year\nLIMIT 500"
+  },
+  "evidence:why did intel s operating margin decline in 2024": {
+   "answer_id": "e410e9e6-30c0-4271-90ed-8b787abab22a",
+   "question": "Show the evidence for that answer",
+   "status": "verified",
+   "route": "evidence",
+   "answer": "Evidence for the answer to: \u201cWhy did Intel's operating margin decline in 2024?\u201d\n[1] Intel Corporation, Form 10-K for fiscal 2023 (filed 2024-01-26), Consolidated statement of operations, page 70\n[2] Intel Corporation, Form 10-K for fiscal 2023 (filed 2024-01-26), Consolidated statement of operations, page 74\n[3] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Consolidated statement of operations, page 57\n[4] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Item 7, Management's Discussion and Analysis, page 23: \u201cOur consolidated gross margin in 2024 decreased by $4.4 billion, or 20%, compared to 2023 due primarily to higher 2024 impairment charges and accelerated depreciation.\u201d\n[5] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Item 7, Management's Discussion and Analysis, page 24: \u201cTo the extent we are unable to grow our revenues to offset these production costs, our gross margin and operating income will be unfavorably affected.\u201d\n[6] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Item 7, Management's Discussion and Analysis, page 18: \u201cCCG operating expenses decreased $1.6 billion from 2022.\u201d\nCalculation: Intel's operating margin, fiscal 2023 = operating_income / revenue, from Operating income [1], Revenue [2].\nCalculation: Intel's operating margin, fiscal 2024 = operating_income / revenue, from Operating income [3], Revenue [3].\nCalculation: Change in Intel's operating margin, fiscal 2023 to 2024 = end - start, from operating margin, fiscal 2023 [1], operating margin, fiscal 2024 [3].",
+   "segments": [
+    {
+     "text": "[1] Intel Corporation, Form 10-K for fiscal 2023 (filed 2024-01-26), Consolidated statement of operations, page 70",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[2] Intel Corporation, Form 10-K for fiscal 2023 (filed 2024-01-26), Consolidated statement of operations, page 74",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[3] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Consolidated statement of operations, page 57",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[4] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Item 7, Management's Discussion and Analysis, page 23: \u201cOur consolidated gross margin in 2024 decreased by $4.4 billion, or 20%, compared to 2023 due primarily to higher 2024 impairment charges and accelerated depreciation.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[5] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Item 7, Management's Discussion and Analysis, page 24: \u201cTo the extent we are unable to grow our revenues to offset these production costs, our gross margin and operating income will be unfavorably affected.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[6] Intel Corporation, Form 10-K for fiscal 2024 (filed 2025-01-31), Item 7, Management's Discussion and Analysis, page 18: \u201cCCG operating expenses decreased $1.6 billion from 2022.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Intel's operating margin, fiscal 2023 = operating_income / revenue, from Operating income [1], Revenue [2].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Intel's operating margin, fiscal 2024 = operating_income / revenue, from Operating income [3], Revenue [3].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Calculation: Change in Intel's operating margin, fiscal 2023 to 2024 = end - start, from operating margin, fiscal 2023 [1], operating margin, fiscal 2024 [3].",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "financial_statement",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2023,
+     "form": "10-K",
+     "filed": "2024-01-26",
+     "accession": "0000050863-24-000010",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000010/intc-20231230.htm",
+     "location": "Consolidated statement of operations",
+     "page": "70",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss",
+     "snippet": null
+    },
+    {
+     "id": 2,
+     "kind": "financial_statement",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2023,
+     "form": "10-K",
+     "filed": "2024-01-26",
+     "accession": "0000050863-24-000010",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086324000010/intc-20231230.htm",
+     "location": "Consolidated statement of operations",
+     "page": "74",
+     "xbrl_tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    },
+    {
+     "id": 3,
+     "kind": "financial_statement",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Consolidated statement of operations",
+     "page": "57",
+     "xbrl_tag": "us-gaap:OperatingIncomeLoss, us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "snippet": null
+    },
+    {
+     "id": 4,
+     "kind": "document",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "23",
+     "xbrl_tag": null,
+     "snippet": "Our consolidated gross margin in 2024 decreased by $4.4 billion, or 20%, compared to 2023 due primarily to higher 2024 impairment charges and accelerated depreciation."
+    },
+    {
+     "id": 5,
+     "kind": "document",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "24",
+     "xbrl_tag": null,
+     "snippet": "To the extent we are unable to grow our revenues to offset these production costs, our gross margin and operating income will be unfavorably affected."
+    },
+    {
+     "id": 6,
+     "kind": "document",
+     "company": "Intel Corporation",
+     "ticker": "INTC",
+     "fiscal_year": 2024,
+     "form": "10-K",
+     "filed": "2025-01-31",
+     "accession": "0000050863-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086325000009/intc-20241228.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "18",
+     "xbrl_tag": null,
+     "snippet": "CCG operating expenses decreased $1.6 billion from 2022."
+    }
+   ],
+   "calculations": [
+    {
+     "description": "Intel's operating margin, fiscal 2023",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": 93000000.0,
+       "citation_id": 1
+      },
+      {
+       "label": "Revenue",
+       "value": 54228000000.0,
+       "citation_id": 2
+      }
+     ],
+     "result": 0.001714981190528878,
+     "unit": "ratio"
+    },
+    {
+     "description": "Intel's operating margin, fiscal 2024",
+     "formula": "operating_income / revenue",
+     "inputs": [
+      {
+       "label": "Operating income",
+       "value": -11678000000.0,
+       "citation_id": 3
+      },
+      {
+       "label": "Revenue",
+       "value": 53101000000.0,
+       "citation_id": 3
+      }
+     ],
+     "result": -0.2199205288036007,
+     "unit": "ratio"
+    },
+    {
+     "description": "Change in Intel's operating margin, fiscal 2023 to 2024",
+     "formula": "end - start",
+     "inputs": [
+      {
+       "label": "operating margin, fiscal 2023",
+       "value": 0.00171498119052888,
+       "citation_id": 1
+      },
+      {
+       "label": "operating margin, fiscal 2024",
+       "value": -0.219920528803601,
+       "citation_id": 3
+      }
+     ],
+     "result": -0.22163550999412987,
+     "unit": "percentage_points"
+    }
+   ],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Evidence for the answer to: \u201cWhy did Intel's operating margin decline in 2024?\u201d",
+   "narrator": "template",
+   "latency_ms": 3,
+   "sql": null
+  },
+  "what does apple say about tariffs": {
+   "answer_id": "7c818f09-88b1-4534-99f2-e270dd9db4ca",
+   "question": "What does Apple say about tariffs?",
+   "status": "verified",
+   "route": "document",
+   "answer": "Apple's fiscal 2025 annual report addresses this in the following passages:\n- \u201cBeginning in the second quarter of 2025, new tariffs were announced on imports to the U.S.\u201d [1]\n- \u201cIn response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures.\u201d [2]\n- \u201cRestrictions on international trade, such as tariffs and other controls on imports or exports of goods, technology or data, can materially adversely affect the Company\u2019s business and supply chain.\u201d [3]\n- \u201cRestrictions on international trade can increase the cost or limit the availability of the Company\u2019s products and the components and rare earths and other raw materials that go into them.\u201d [4]",
+   "segments": [
+    {
+     "text": "Apple's fiscal 2025 annual report addresses this in the following passages:",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "Beginning in the second quarter of 2025, new tariffs were announced on imports to the U.S.",
+     "citation_ids": [
+      1
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "In response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures.",
+     "citation_ids": [
+      2
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "Restrictions on international trade, such as tariffs and other controls on imports or exports of goods, technology or data, can materially adversely affect the Company\u2019s business and supply chain.",
+     "citation_ids": [
+      3
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    },
+    {
+     "text": "Restrictions on international trade can increase the cost or limit the availability of the Company\u2019s products and the components and rare earths and other raw materials that go into them.",
+     "citation_ids": [
+      4
+     ],
+     "kind": "quoted",
+     "bullet": true,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "6",
+     "xbrl_tag": null,
+     "snippet": "Beginning in the second quarter of 2025, new tariffs were announced on imports to the U.S."
+    },
+    {
+     "id": 2,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "21",
+     "xbrl_tag": null,
+     "snippet": "In response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures."
+    },
+    {
+     "id": 3,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "6",
+     "xbrl_tag": null,
+     "snippet": "Restrictions on international trade, such as tariffs and other controls on imports or exports of goods, technology or data, can materially adversely affect the Company\u2019s business and supply chain."
+    },
+    {
+     "id": 4,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 1, Business",
+     "page": "3",
+     "xbrl_tag": null,
+     "snippet": "Restrictions on international trade can increase the cost or limit the availability of the Company\u2019s products and the components and rare earths and other raw materials that go into them."
+    }
+   ],
+   "calculations": [],
+   "checks": [
+    {
+     "name": "citations_resolve",
+     "passed": true,
+     "detail": "every figure and quotation is cited"
+    },
+    {
+     "name": "numbers_sourced",
+     "passed": true,
+     "detail": "0 figures traced to source or calculation"
+    },
+    {
+     "name": "quotes_verbatim",
+     "passed": true,
+     "detail": "quotations match the cited passages"
+    },
+    {
+     "name": "evidence_strength",
+     "passed": true,
+     "detail": "best passage similarity 0.58 (threshold 0.38)"
+    }
+   ],
+   "table": [],
+   "clarification_options": [],
+   "reason": null,
+   "narrator": "template",
+   "latency_ms": 321,
+   "sql": null
+  },
+  "evidence:what does apple say about tariffs": {
+   "answer_id": "c0eb1c55-8933-498e-8a67-5812542264c8",
+   "question": "Show the evidence for that answer",
+   "status": "verified",
+   "route": "evidence",
+   "answer": "Evidence for the answer to: \u201cWhat does Apple say about tariffs?\u201d\n[1] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 1A, Risk Factors, page 6: \u201cBeginning in the second quarter of 2025, new tariffs were announced on imports to the U.S.\u201d\n[2] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 7, Management's Discussion and Analysis, page 21: \u201cIn response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures.\u201d\n[3] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 1A, Risk Factors, page 6: \u201cRestrictions on international trade, such as tariffs and other controls on imports or exports of goods, technology or data, can materially adversely affect the Company\u2019s business and supply chain.\u201d\n[4] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 1, Business, page 3: \u201cRestrictions on international trade can increase the cost or limit the availability of the Company\u2019s products and the components and rare earths and other raw materials that go into them.\u201d",
+   "segments": [
+    {
+     "text": "[1] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 1A, Risk Factors, page 6: \u201cBeginning in the second quarter of 2025, new tariffs were announced on imports to the U.S.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[2] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 7, Management's Discussion and Analysis, page 21: \u201cIn response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[3] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 1A, Risk Factors, page 6: \u201cRestrictions on international trade, such as tariffs and other controls on imports or exports of goods, technology or data, can materially adversely affect the Company\u2019s business and supply chain.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    },
+    {
+     "text": "[4] Apple Inc., Form 10-K for fiscal 2025 (filed 2025-10-31), Item 1, Business, page 3: \u201cRestrictions on international trade can increase the cost or limit the availability of the Company\u2019s products and the components and rare earths and other raw materials that go into them.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "6",
+     "xbrl_tag": null,
+     "snippet": "Beginning in the second quarter of 2025, new tariffs were announced on imports to the U.S."
+    },
+    {
+     "id": 2,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 7, Management's Discussion and Analysis",
+     "page": "21",
+     "xbrl_tag": null,
+     "snippet": "In response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures."
+    },
+    {
+     "id": 3,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 1A, Risk Factors",
+     "page": "6",
+     "xbrl_tag": null,
+     "snippet": "Restrictions on international trade, such as tariffs and other controls on imports or exports of goods, technology or data, can materially adversely affect the Company\u2019s business and supply chain."
+    },
+    {
+     "id": 4,
+     "kind": "document",
+     "company": "Apple Inc.",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "form": "10-K",
+     "filed": "2025-10-31",
+     "accession": "0000320193-25-000079",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+     "location": "Item 1, Business",
+     "page": "3",
+     "xbrl_tag": null,
+     "snippet": "Restrictions on international trade can increase the cost or limit the availability of the Company\u2019s products and the components and rare earths and other raw materials that go into them."
+    }
+   ],
+   "calculations": [],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Evidence for the answer to: \u201cWhat does Apple say about tariffs?\u201d",
+   "narrator": "template",
+   "latency_ms": 2,
+   "sql": null
+  },
+  "how many employees does costco have": {
+   "answer_id": "a2130c5b-d828-4f7a-a3b1-e0f9002eeded",
+   "question": "How many employees does Costco have?",
+   "status": "verified",
+   "route": "sql",
+   "answer": "Costco reported approximately 355,000 employees at the end of fiscal 2026 [1].",
+   "segments": [
+    {
+     "text": "Costco reported approximately 355,000 employees at the end of fiscal 2026 [1].",
+     "citation_ids": [
+      1
+     ],
+     "kind": "computed",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "extracted",
+     "company": "Costco Wholesale Corporation",
+     "ticker": "COST",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-10-07",
+     "accession": "0000909832-26-000093",
+     "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000093/cost-20260830.htm",
+     "location": "Item 1, Business (human capital)",
+     "page": "6",
+     "xbrl_tag": null,
+     "snippet": "Employee Base At the end of 2026, we employed 355,000 employees worldwide."
+    }
+   ],
+   "calculations": [],
+   "checks": [
+    {
+     "name": "citations_resolve",
+     "passed": true,
+     "detail": "every figure and quotation is cited"
+    },
+    {
+     "name": "numbers_sourced",
+     "passed": true,
+     "detail": "1 figure traced to source or calculation"
+    },
+    {
+     "name": "units_consistent",
+     "passed": true,
+     "detail": "units: people"
+    },
+    {
+     "name": "periods_match",
+     "passed": true,
+     "detail": "fiscal 2026"
+    },
+    {
+     "name": "complete",
+     "passed": true,
+     "detail": "all requested figures found"
+    },
+    {
+     "name": "extraction_confidence",
+     "passed": true,
+     "detail": "figures read from text matched a high-confidence pattern"
+    }
+   ],
+   "table": [
+    {
+     "company": "Costco",
+     "metric": "Employees",
+     "fiscal_year": 2026,
+     "value": 355000.0,
+     "display": "355,000",
+     "source": "text"
+    }
+   ],
+   "clarification_options": [],
+   "reason": null,
+   "narrator": "template",
+   "latency_ms": 7,
+   "sql": "SELECT c.ticker, c.name AS company, mv.metric_key, mv.fiscal_year, mv.period_end, mv.value, mv.unit,\n       mv.source_kind, mv.xbrl_tag, mv.extraction_confidence, mv.found_in_document, mv.derivation, mv.evidence,\n       f.accession, f.form, f.filed, f.url,\n       df.accession AS doc_accession, df.form AS doc_form, df.filed AS doc_filed, df.url AS doc_url\nFROM metric_value mv\nJOIN company c ON c.company_id = mv.company_id\nLEFT JOIN filing f ON f.filing_id = mv.filing_id\nLEFT JOIN filing df ON df.accession = mv.evidence ->> 'doc_accession'\nWHERE c.ticker = ANY(:tickers)\n  AND mv.metric_key = ANY(:metrics)\n  AND mv.fiscal_year BETWEEN :year_from AND :year_to\nORDER BY c.ticker, mv.metric_key, mv.fiscal_year\nLIMIT 500"
+  },
+  "evidence:how many employees does costco have": {
+   "answer_id": "489ad27a-137b-4c64-8bae-b58586579e11",
+   "question": "Show the evidence for that answer",
+   "status": "verified",
+   "route": "evidence",
+   "answer": "Evidence for the answer to: \u201cHow many employees does Costco have?\u201d\n[1] Costco Wholesale Corporation, Form 10-K for fiscal 2026 (filed 2026-10-07), Item 1, Business (human capital), page 6: \u201cEmployee Base At the end of 2026, we employed 355,000 employees worldwide.\u201d",
+   "segments": [
+    {
+     "text": "[1] Costco Wholesale Corporation, Form 10-K for fiscal 2026 (filed 2026-10-07), Item 1, Business (human capital), page 6: \u201cEmployee Base At the end of 2026, we employed 355,000 employees worldwide.\u201d",
+     "citation_ids": [],
+     "kind": "context",
+     "bullet": false,
+     "calc_index": null
+    }
+   ],
+   "citations": [
+    {
+     "id": 1,
+     "kind": "extracted",
+     "company": "Costco Wholesale Corporation",
+     "ticker": "COST",
+     "fiscal_year": 2026,
+     "form": "10-K",
+     "filed": "2026-10-07",
+     "accession": "0000909832-26-000093",
+     "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000093/cost-20260830.htm",
+     "location": "Item 1, Business (human capital)",
+     "page": "6",
+     "xbrl_tag": null,
+     "snippet": "Employee Base At the end of 2026, we employed 355,000 employees worldwide."
+    }
+   ],
+   "calculations": [],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Evidence for the answer to: \u201cHow many employees does Costco have?\u201d",
+   "narrator": "template",
+   "latency_ms": 2,
+   "sql": null
+  },
+  "what was tesla s revenue in 2024": {
+   "answer_id": "fcd76b8d-b99c-46c3-835c-a5856cfb499c",
+   "question": "What was Tesla's revenue in 2024?",
+   "status": "refused",
+   "route": "refuse",
+   "answer": "Tesla is not among the 15 companies whose filings the system holds, so it has no evidence to answer from.",
+   "segments": [],
+   "citations": [],
+   "calculations": [],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "Tesla is not among the 15 companies whose filings the system holds, so it has no evidence to answer from.",
+   "narrator": "template",
+   "latency_ms": 1,
+   "sql": null
+  },
+  "what will nvidia s revenue be in 2028": {
+   "answer_id": "e2673578-01d2-4f0f-8ebe-d35d34729cde",
+   "question": "What will Nvidia's revenue be in 2028?",
+   "status": "refused",
+   "route": "refuse",
+   "answer": "The system answers from reported results only and does not forecast future figures.",
+   "segments": [],
+   "citations": [],
+   "calculations": [],
+   "checks": [],
+   "table": [],
+   "clarification_options": [],
+   "reason": "The system answers from reported results only and does not forecast future figures.",
+   "narrator": "template",
+   "latency_ms": 1,
+   "sql": null
+  },
+  "what was apple s profit in 2024": {
+   "answer_id": "27d8fd3b-f9c6-44a8-8117-f1bac14fc85c",
+   "question": "What was Apple's profit in 2024?",
+   "status": "ambiguous",
+   "route": "clarify",
+   "answer": "\"profit\" could mean more than one reported figure. Which one do you mean?",
+   "segments": [],
+   "citations": [],
+   "calculations": [],
+   "checks": [],
+   "table": [],
+   "clarification_options": [
+    "operating income",
+    "net income"
+   ],
+   "reason": "\"profit\" could mean more than one reported figure. Which one do you mean?",
+   "narrator": "template",
+   "latency_ms": 1,
+   "sql": null
+  }
+ },
+ "byId": {
+  "94129665-fccc-4b5c-972a-0f9b090a6729": "how did apple s revenue and operating margin change between 2023 and 2025",
+  "779977e3-5bcc-49d6-9df7-4df39c7690a3": "which risks did nvidia mention in its latest annual report",
+  "30d5e068-0f7e-4d3e-a1fa-e105da5f2775": "compare free cash flow across apple microsoft and alphabet in 2024",
+  "f8c14989-a2a5-4de9-8e77-219b2dfd4311": "why did intel s operating margin decline in 2024",
+  "7c818f09-88b1-4534-99f2-e270dd9db4ca": "what does apple say about tariffs",
+  "a2130c5b-d828-4f7a-a3b1-e0f9002eeded": "how many employees does costco have"
+ }
+}

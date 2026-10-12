@@ -1,0 +1,164 @@
+{
+  "generated": "2026-10-12",
+  "companies": {
+    "AAPL": {
+      "metric_values": 48,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "MSFT": {
+      "metric_values": 57,
+      "text_filings": [
+        2026,
+        2025,
+        2024
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "GOOGL": {
+      "metric_values": 48,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 33
+    },
+    "AMZN": {
+      "metric_values": 48,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "META": {
+      "metric_values": 48,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "NVDA": {
+      "metric_values": 55,
+      "text_filings": [
+        2026,
+        2025,
+        2024
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "INTC": {
+      "metric_values": 46,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "CSCO": {
+      "metric_values": 57,
+      "text_filings": [
+        2026,
+        2025,
+        2024
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "ADBE": {
+      "metric_values": 48,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "KO": {
+      "metric_values": 43,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 33,
+      "xbrl_values_found_in_text": 32
+    },
+    "PEP": {
+      "metric_values": 48,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "PG": {
+      "metric_values": 57,
+      "text_filings": [
+        2026,
+        2025,
+        2024
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 34
+    },
+    "NKE": {
+      "metric_values": 45,
+      "text_filings": [
+        2026,
+        2025,
+        2024
+      ],
+      "xbrl_values_checked_against_text": 30,
+      "xbrl_values_found_in_text": 29
+    },
+    "COST": {
+      "metric_values": 57,
+      "text_filings": [
+        2026,
+        2025,
+        2024
+      ],
+      "xbrl_values_checked_against_text": 35,
+      "xbrl_values_found_in_text": 35
+    },
+    "CAT": {
+      "metric_values": 40,
+      "text_filings": [
+        2025,
+        2024,
+        2023
+      ],
+      "xbrl_values_checked_against_text": 30,
+      "xbrl_values_found_in_text": 29
+    }
+  },
+  "totals": {
+    "companies": 15,
+    "filings": 81,
+    "filings_with_text": 45,
+    "sections": 170,
+    "chunks": 5618,
+    "xbrl_facts": 7696,
+    "metric_values": 745
+  }
+}
