@@ -50,7 +50,30 @@ for (const q of EXAMPLES) {
 $("ask").addEventListener("submit", (e) => { e.preventDefault(); const q = $("q").value.trim(); if (q) submit(q); });
 $("evidence-btn").onclick = () => lastAnswer && submit("Show the evidence for that answer", lastAnswer.answer_id);
 
+let engine = null;
+if (isStatic) {
+  engine = import("./engine.js").then((m) => { m.start().catch(engineFailed); return m; }).catch(engineFailed);
+  window.addEventListener("footnote-progress", (e) => {
+    const el = $("engine-status");
+    el.hidden = !e.detail;
+    el.textContent = e.detail;
+    if (!e.detail) $("static-notice").textContent =
+      "The engine is running in your browser: the same Python pipeline as the server, on the same snapshot of the filings. Ask anything within scope.";
+  });
+}
+let engineBroken = false;
+function engineFailed(err) {
+  engineBroken = true;
+  const el = $("engine-status");
+  el.hidden = false;
+  el.textContent = `The in-browser engine could not start (${err.message}). Example questions will replay recorded answers.`;
+}
+
 async function fetchAnswer(question, previous) {
+  if (isStatic && !engineBroken) {
+    const m = await engine;
+    if (m) return m.ask(question, previous);
+  }
   if (isStatic) {
     recorded = recorded || await (await fetch("recorded.json")).json();
     const key = previous ? `evidence:${recorded.byId[previous] || ""}` : question.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();

@@ -14,10 +14,9 @@ from dataclasses import dataclass
 from functools import lru_cache
 
 from rank_bm25 import BM25Okapi
-from sqlalchemy import text
 
+from footnote import backend
 from footnote.catalog import SECTIONS
-from footnote.db import connect
 from footnote.embed import embed_query
 from footnote.schemas import SearchHit
 
@@ -95,18 +94,8 @@ _lock = threading.Lock()
 
 @lru_cache(maxsize=1)
 def _corpus() -> _Corpus:
-    with _lock, connect() as conn:
-        rows = (
-            conn.execute(
-                text(
-                    """SELECT ch.chunk_id, ch.text, ch.fiscal_year, ch.item, ch.page, c.ticker, c.name, f.accession, f.url, f.filed
-                   FROM chunk ch JOIN company c USING (company_id) JOIN filing f USING (filing_id)
-                   ORDER BY ch.chunk_id"""
-                )
-            )
-            .mappings()
-            .all()
-        )
+    with _lock:
+        rows = backend.get().corpus_rows()
     ids = [r["chunk_id"] for r in rows]
     meta = {r["chunk_id"]: dict(r) for r in rows}
     return _Corpus(ids=ids, meta=meta, bm25=BM25Okapi([tokenize(r["text"]) for r in rows]))
@@ -135,31 +124,12 @@ def search(
             and (not items or m["item"] in items)
         )
 
-    # Dense: exact cosine search inside the filter. The HNSW index serves unfiltered
-    # queries; with a company and year filter the candidate set is small enough that
-    # an exact scan is both faster and free of the recall loss of a filtered ANN search.
-    clauses, params = ["embedding IS NOT NULL"], {"q": embed_query(query), "n": candidates}
-    if tickers:
-        clauses.append("company_id IN (SELECT company_id FROM company WHERE ticker = ANY(:tickers))")
-        params["tickers"] = tickers
-    if years:
-        clauses.append("fiscal_year = ANY(:years)")
-        params["years"] = years
-    if items:
-        clauses.append("item = ANY(:items)")
-        params["items"] = items
-    with connect() as conn:
-        dense = conn.execute(
-            text(
-                f"""SELECT chunk_id, 1 - (embedding <=> :q) AS similarity FROM chunk
-                    WHERE {" AND ".join(clauses)} ORDER BY embedding <=> :q LIMIT :n"""
-            ),
-            params,
-        ).all()
+    # Dense: cosine similarity inside the metadata filter.
+    dense = backend.get().dense(embed_query(query), tickers, years, items, candidates)
     if mode == "bm25":
         dense = []
-    dense_rank = {r.chunk_id: i for i, r in enumerate(dense)}
-    similarity = {r.chunk_id: float(r.similarity) for r in dense}
+    dense_rank = {cid: i for i, (cid, _) in enumerate(dense)}
+    similarity = dict(dense)
 
     scores = corpus.bm25.get_scores(tokenize(query))
     ranked = sorted(

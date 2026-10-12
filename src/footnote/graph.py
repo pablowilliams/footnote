@@ -13,12 +13,9 @@ import time
 import uuid
 from typing import Any, TypedDict
 
-from langgraph.graph import END, StateGraph
-from sqlalchemy import text
-
+from footnote import backend
 from footnote.answers import Draft, document, join_names, short_name, structured
 from footnote.catalog import COMPANIES, METRICS
-from footnote.db import connect
 from footnote.logs import log
 from footnote.narrate import narrate
 from footnote.question import ParsedQuestion, parse
@@ -109,13 +106,12 @@ def node_evidence(state: State) -> State:
         draft.status = Status.ambiguous
         draft.reason = "There is no earlier answer in this conversation to show evidence for. Ask a question first."
         return {"draft": draft}
-    with connect() as conn:
-        row = conn.execute(text("SELECT response FROM answer_log WHERE answer_id = :id"), {"id": prev}).first()
+    row = backend.get().load_answer(prev)
     if not row:
         draft.status = Status.ambiguous
         draft.reason = "The earlier answer could not be found."
         return {"draft": draft}
-    earlier = Answer.model_validate(row.response)
+    earlier = Answer.model_validate(row)
     draft.status = earlier.status
     draft.reason = f"Evidence for the answer to: “{earlier.question}”"
     for c in earlier.citations:
@@ -237,6 +233,8 @@ _TARGET = {
 
 
 def build_graph():  # type: ignore[no-untyped-def]
+    from langgraph.graph import END, StateGraph
+
     g = StateGraph(State)
     g.add_node("parse", node_parse)
     g.add_node("route", node_route)
@@ -256,33 +254,52 @@ def build_graph():  # type: ignore[no-untyped-def]
     return g.compile()
 
 
+_NODES = {
+    "structured": node_structured,
+    "document": node_document,
+    "structured_document": node_structured_document,
+    "evidence": node_evidence,
+    "clarify": node_clarify,
+    "refuse": node_refuse,
+}
+
+
+class _Sequential:
+    """The same graph walked by hand, for environments without LangGraph (the browser build).
+
+    The graph has one branch point and no cycles, so walking it is four function
+    calls; the node functions are the ones LangGraph runs.
+    """
+
+    def invoke(self, state: State) -> State:
+        for step in (node_parse, node_route):
+            state = {**state, **step(state)}
+        state = {**state, **_NODES[_TARGET[state["route"]]](state)}
+        return {**state, **node_finalise(state)}
+
+
 _GRAPH: Any = None
 
 
-def ask(question: str, previous_answer_id: str | None = None, persist: bool = True) -> Answer:
+def _graph() -> Any:
     global _GRAPH
     if _GRAPH is None:
-        _GRAPH = build_graph()
+        try:
+            _GRAPH = build_graph()
+        except ImportError:
+            _GRAPH = _Sequential()
+    return _GRAPH
+
+
+def ask(question: str, previous_answer_id: str | None = None, persist: bool = True) -> Answer:
     started = time.perf_counter()
-    result = _GRAPH.invoke({"question": question, "previous_answer_id": previous_answer_id})
+    result = _graph().invoke({"question": question, "previous_answer_id": previous_answer_id})
     answer: Answer = result["answer"]
     answer.latency_ms = int((time.perf_counter() - started) * 1000)
     if persist:
-        with connect() as conn:
-            conn.execute(
-                text(
-                    """INSERT INTO answer_log (answer_id, question, route, status, latency_ms, response)
-                       VALUES (:id, :q, :route, :status, :ms, CAST(:resp AS jsonb))"""
-                ),
-                {
-                    "id": answer.answer_id,
-                    "q": question,
-                    "route": answer.route.value,
-                    "status": answer.status.value,
-                    "ms": answer.latency_ms,
-                    "resp": answer.model_dump_json(),
-                },
-            )
+        backend.get().save_answer(
+            answer.answer_id, question, answer.route.value, answer.status.value, answer.latency_ms, answer.model_dump_json()
+        )
     log.info("answer", route=answer.route.value, status=answer.status.value, latency_ms=answer.latency_ms)
     return answer
 

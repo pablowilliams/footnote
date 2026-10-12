@@ -34,6 +34,8 @@ nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size
 nav a:hover { color: var(--accent); }
 .intro h1 { font-family: var(--serif); font-weight: 600; font-size: 34px; margin: 40px 0 8px; }
 .intro p { color: var(--muted); max-width: 680px; }
+.engine { font-size: 13px; color: var(--muted) !important; margin: 6px 0 0; }
+.engine::before { content: "⏳ "; }
 .notice { background: var(--accent-soft); color: var(--ink) !important; padding: 10px 14px; border-radius: 6px; font-size: 14px; }
 form#ask { display: flex; gap: 10px; margin: 24px 0 12px; }
 #q { flex: 1; font: inherit; padding: 12px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }

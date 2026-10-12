@@ -32,9 +32,9 @@ class UnsafeQuery(ValueError):
     pass
 
 
-def validate(sql: str) -> exp.Expression:
+def validate(sql: str, dialect: str = "postgres") -> exp.Expression:
     try:
-        statements = [s for s in sqlglot.parse(sql, read="postgres") if s is not None]
+        statements = [s for s in sqlglot.parse(sql, read=dialect) if s is not None]
     except sqlglot.errors.ParseError as err:
         raise UnsafeQuery(f"could not parse: {err}") from err
     if len(statements) != 1:

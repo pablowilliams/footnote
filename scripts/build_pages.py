@@ -11,6 +11,7 @@ from __future__ import annotations
 import html
 import re
 import shutil
+import zipfile
 from pathlib import Path
 
 import markdown
@@ -78,6 +79,22 @@ def render(name: str) -> str:
     return PAGE.format(title=TITLES[name], nav=nav, body=body)
 
 
+# Modules the browser engine does not need: the server, the database, ingestion and evaluation.
+ENGINE_EXCLUDE = {"api.py", "cli.py", "db.py", "evaluation.py", "sec.py", "pipeline.py", "parse.py", "chunk.py", "headcount.py", "xbrl.py"}
+SNAPSHOT_FILES = ["companies.jsonl", "filings.jsonl", "metric_values.jsonl", "chunks.jsonl.gz", "embeddings.npz"]
+
+
+def build_engine() -> None:
+    (SITE / "engine").mkdir()
+    with zipfile.ZipFile(SITE / "engine" / "footnote.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        for path in sorted((ROOT / "src" / "footnote").rglob("*.py")):
+            if path.name not in ENGINE_EXCLUDE:
+                z.write(path, path.relative_to(ROOT / "src"))
+    (SITE / "snapshot").mkdir()
+    for name in SNAPSHOT_FILES:
+        shutil.copy(ROOT / "data" / "snapshot" / name, SITE / "snapshot" / name)
+
+
 def main() -> None:
     shutil.rmtree(SITE, ignore_errors=True)
     (SITE / "docs").mkdir(parents=True)
@@ -86,6 +103,7 @@ def main() -> None:
     index = index.replace('content="live"', 'content="static"')
     (SITE / "index.html").write_text(index)
     shutil.copy(ROOT / "data/recorded.json", SITE / "recorded.json")
+    build_engine()
     for name in DOCS:
         (SITE / "docs" / f"{name}.html").write_text(render(name))
     (SITE / "docs" / "index.html").write_text(render("case-study"))

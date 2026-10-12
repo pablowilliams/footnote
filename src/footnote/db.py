@@ -15,8 +15,8 @@ from sqlalchemy.engine import Connection
 
 from footnote.catalog import METRICS
 from footnote.config import ROOT, settings
-from footnote.ingest.pipeline import read_jsonl
 from footnote.logs import log
+from footnote.snapshot_io import read_jsonl
 
 MIGRATIONS = ROOT / "migrations"
 _engines: dict[str, Engine] = {}

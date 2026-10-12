@@ -29,8 +29,10 @@
       <p>Footnote answers questions about the 10-K filings of fifteen US companies. Every figure is read from the
         filing, every calculation is done in code and checked again, and every answer cites the page it came from.
         When the filings do not support an answer, it says so.</p>
-      <p class="notice" id="static-notice" hidden>This hosted page replays answers the system produced for the questions below.
-        To ask your own questions, run it locally with <code>make demo</code>; the steps are in the repository.</p>
+      <p class="notice" id="static-notice" hidden>This page runs the whole system in your browser, with no server: the Python
+        pipeline under Pyodide, the embedding model under transformers.js and the filings snapshot in memory. The first load
+        downloads about 120 MB (cached by your browser afterwards) and takes under a minute on a fast connection; after that, most answers take milliseconds and document searches a second or two.</p>
+      <p class="engine" id="engine-status" hidden></p>
     </section>
 
     <form id="ask" autocomplete="off">

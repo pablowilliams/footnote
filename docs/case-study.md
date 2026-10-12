@@ -53,6 +53,10 @@ The one question still answered wrongly shows the same limit from the other side
 - **The boundary between what a model should do and what code should do can be drawn precisely.** Here it is: code finds and computes every figure; a model, if used, may only rephrase sentences that already contain them, and its output is checked as strictly as anything else.
 - **Honest measurement includes the failures.** The first run scored 95.5%, the faults were traced and fixed, the regression cases were added and labelled as such, and the remaining weakness is described rather than tuned away.
 
+## Try it
+
+The [hosted demo](https://pablowilliams.github.io/footnote/) runs the complete system in your browser, with no server: the Python pipeline under Pyodide, the filings in an in-memory database, and the embedding model under transformers.js. It gives the same answers as the PostgreSQL deployment on every evaluation question.
+
 ## Built with
 
-Python, PostgreSQL with pgvector, SQLAlchemy, sqlglot, rank-bm25, sentence-transformers, LangGraph, FastAPI, Pydantic, structlog, Prometheus, pytest and Hypothesis, Docker, GitHub Actions. Optional narration with the Anthropic API.
+Python, PostgreSQL with pgvector, SQLAlchemy, sqlglot, rank-bm25, sentence-transformers, LangGraph, FastAPI, Pydantic, structlog, Prometheus, pytest and Hypothesis, Docker, GitHub Actions, Pyodide and transformers.js for the browser build. Optional narration with the Anthropic API.

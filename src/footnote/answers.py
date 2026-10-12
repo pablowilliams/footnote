@@ -393,22 +393,9 @@ def _strip_entities(question: str, parsed: ParsedQuestion) -> str:
 
 
 def _text_years(tickers: list[str]) -> dict[str, list[int]]:
-    from sqlalchemy import text
+    from footnote import backend
 
-    from footnote.db import connect
-
-    with connect() as conn:
-        rows = conn.execute(
-            text(
-                """SELECT c.ticker, f.fiscal_year FROM filing f JOIN company c USING (company_id)
-                   WHERE f.has_text AND c.ticker = ANY(:t) ORDER BY f.fiscal_year"""
-            ),
-            {"t": tickers},
-        ).all()
-    out: dict[str, list[int]] = {}
-    for r in rows:
-        out.setdefault(r.ticker, []).append(r.fiscal_year)
-    return out
+    return backend.get().text_years(tickers)
 
 
 def document(parsed: ParsedQuestion, question: str, lead: bool = True, draft: Draft | None = None) -> Draft:

@@ -51,6 +51,8 @@ jobs:
         run: python -m pytest --cov --cov-report=term-missing:skip-covered
       - name: Evaluation (fails below 90% correctness)
         run: python -m footnote.cli evaluate --min-correct 0.90
+      - name: Evaluation on the in-memory backend used by the browser build
+        run: FOOTNOTE_BACKEND=memory python -m footnote.cli evaluate --min-correct 0.90
       - uses: actions/upload-artifact@v4
         with:
           name: evaluation

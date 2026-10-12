@@ -4,7 +4,7 @@
 
 [![ci](https://github.com/pablowilliams/footnote/actions/workflows/ci.yml/badge.svg)](https://github.com/pablowilliams/footnote/actions/workflows/ci.yml)
 
-**[Hosted demo (recorded answers)](https://pablowilliams.github.io/footnote/)** · [Demo video, 75 seconds](docs/media/demo.mp4) · [Evaluation report](docs/evaluation.md) · [Failure analysis](docs/failure-analysis.md) · [Design note](docs/design-note.md) · [Architecture](docs/architecture.md) · [Data model](docs/data-model.md) · [API](docs/api.md)
+**[Live demo, running entirely in your browser](https://pablowilliams.github.io/footnote/)** · [Demo video, 75 seconds](docs/media/demo.mp4) · [Evaluation report](docs/evaluation.md) · [Failure analysis](docs/failure-analysis.md) · [Design note](docs/design-note.md) · [Architecture](docs/architecture.md) · [Data model](docs/data-model.md) · [API](docs/api.md)
 
 ---
 
@@ -38,6 +38,10 @@ Status: refused. The system answers from reported results only and does not fore
 Q: What was Apple's profit in 2024?
 Status: ambiguous. "profit" could mean more than one reported figure. Options: operating income, net income.
 ```
+
+## Try it
+
+**[pablowilliams.github.io/footnote](https://pablowilliams.github.io/footnote/)** runs the whole system in the browser, hosted on GitHub Pages with no server. The Python pipeline runs under Pyodide (WebAssembly), the filings snapshot is loaded into an in-memory SQLite database and a NumPy matrix, and the embedding model runs under transformers.js. It is the same code as the server: parser, router, SQL validation, calculations, hybrid retrieval, verifier. On all 72 evaluation questions it gives the same answer, character for character, as the PostgreSQL deployment. The first visit downloads about 120 MB, which the browser then caches.
 
 ## Results
 
@@ -79,6 +83,7 @@ flowchart TD
     V -->|blocking check fails| W[Withhold: insufficient evidence]
     V -->|passes| N[Narrator: template, or Claude under the same checks]
     N --> O[FastAPI + web interface]
+    C --> BR[Browser build: Pyodide + in-memory SQLite + transformers.js on GitHub Pages]
 ```
 
 - **Ingestion** reads XBRL company facts for the figures and the 10-K HTML for the text. The fiscal year of a figure is taken from the filing in which that period is the primary one, because the `fy` field on an XBRL fact names the filing's year, not the period's. Restated values replace the original and keep it as lineage.
@@ -111,7 +116,7 @@ Other commands:
 ```bash
 footnote ask "Compare free cash flow across Apple, Microsoft and Alphabet in 2024"
 footnote search "export controls" --ticker NVDA --item 1A
-make test        # 88 tests: arithmetic, units, dates, SQL safety, citations, unsupported claims, API
+make test        # 92 tests: arithmetic, units, dates, SQL safety, citations, unsupported claims, API, backend parity
 make evaluate    # the 72-question evaluation, written to docs/evaluation.md
 make ingest      # re-download everything from SEC EDGAR and rebuild the snapshot
 ```
@@ -151,6 +156,8 @@ src/footnote/
   evidence.py    citations and quotation selection
   verify.py      blocking and advisory checks
   narrate.py     template narrator and optional Claude narrator
+  backend.py     PostgreSQL backend and the in-memory backend the browser build uses
+  browser.py     entry point for the Pyodide build
   api.py         FastAPI service, rate limit, cache, metrics
   web/           the web interface
 migrations/      numbered SQL migrations

@@ -82,4 +82,15 @@ flowchart LR
 
 ## Deployment
 
-`compose.yaml` runs the API with a `pgvector/pgvector:pg16` database; the container applies migrations and loads the snapshot on first start. The image installs CPU-only PyTorch and bakes in the embedding model, so it starts without network access. `fly.toml` deploys the same image to Fly.io against a managed Postgres. GitHub Actions runs linting, type checks, the tests against a real pgvector service, and the evaluation, which fails the build below 90% correctness. A second workflow publishes the case study, the evaluation report and a replay of recorded answers to GitHub Pages.
+`compose.yaml` runs the API with a `pgvector/pgvector:pg16` database; the container applies migrations and loads the snapshot on first start. The image installs CPU-only PyTorch and bakes in the embedding model, so it starts without network access. `fly.toml` deploys the same image to Fly.io against a managed Postgres. GitHub Actions runs linting, type checks, the tests against a real pgvector service, and the evaluation, which fails the build below 90% correctness. A second workflow publishes the browser build, the case study and the reports to GitHub Pages.
+
+## The browser build
+
+GitHub Pages serves static files only, so the hosted demo runs the system inside the visitor's browser rather than on a server:
+
+- **Python** runs under Pyodide (CPython compiled to WebAssembly). The page loads NumPy, Pydantic and SQLite from Pyodide, installs sqlglot, rank-bm25 and structlog with micropip, and unpacks the `footnote` package (everything except the server, database and ingestion modules).
+- **Storage** is `MemoryBackend`: the committed snapshot loaded into an in-memory SQLite database (made read-only with `PRAGMA query_only`) and a NumPy matrix of the 5,618 passage embeddings. Generated SQL is the SQLite form of the same queries and passes the same sqlglot validation.
+- **Embeddings** come from the same model, `all-MiniLM-L6-v2`, running under transformers.js. Python cannot call JavaScript synchronously, so the pipeline asks for what it needs: a request for an unseen text raises `EmbeddingsNeeded`, the page embeds those texts and runs the question again. The pipeline is deterministic, so the second run asks for exactly the same texts and completes; no question needs more than two rounds.
+- **The graph** is the same node functions. Where LangGraph is not installed, as in the browser, they are walked in order by a small runner; the graph has one branch point and no cycles, so this is four function calls.
+
+Parity is tested, not assumed. `tests/test_backends.py` checks that the two backends give identical answers, CI runs the full evaluation against both, and all 72 evaluation questions were run in a browser and compared with the server's answers: all 72 matched character for character.

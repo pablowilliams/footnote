@@ -7,7 +7,6 @@ can all be rebuilt without touching the SEC again.
 
 from __future__ import annotations
 
-import gzip
 import json
 import re
 from dataclasses import asdict
@@ -23,26 +22,7 @@ from footnote.ingest.parse import ParsedFiling, parse_filing
 from footnote.ingest.xbrl import MetricValue, fiscal_year_ends, fiscal_year_for, raw_facts, select_metric_values
 from footnote.logs import log
 from footnote.sec import SecClient, filing_url
-
-
-def _jsonable(obj: Any) -> Any:
-    if isinstance(obj, date):
-        return obj.isoformat()
-    raise TypeError(type(obj))
-
-
-def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    opener = gzip.open if path.suffix == ".gz" else open
-    with opener(path, "wt", encoding="utf-8") as fh:  # type: ignore[operator]
-        for row in rows:
-            fh.write(json.dumps(row, default=_jsonable, sort_keys=True) + "\n")
-
-
-def read_jsonl(path: Path) -> list[dict[str, Any]]:
-    opener = gzip.open if path.suffix == ".gz" else open
-    with opener(path, "rt", encoding="utf-8") as fh:  # type: ignore[operator]
-        return [json.loads(line) for line in fh if line.strip()]
+from footnote.snapshot_io import write_jsonl
 
 
 def _annual_filings(company: Company, submissions: dict[str, Any], client: SecClient) -> list[dict[str, Any]]:
